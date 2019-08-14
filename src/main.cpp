@@ -3,6 +3,8 @@
 #include "../inc/Convolution2D.h"
 #include "../inc/MaxPooling.h"
 #include "../inc/sigmoid.h"
+#include "../inc/leakyReLu.h"
+#include "../inc/BatchNormalization.h"
 #include "../inc/Matrix4D.h"
 
 
@@ -22,7 +24,6 @@ struct Dense{
 
         Matrix<float> postMult = matrixDotProduct(&inputMatrix, &weightsMatrix);
         Matrix<float> output= matrixAddition(&postMult, &biasMatrix);
-//        output = sigmoidMatrix(&output);
 
         array4d out(output.rows, output.cols, 1, 1);
         out.data = output.data;
@@ -40,13 +41,14 @@ int main() {
     /**
      * reading input
      */
-    array<array<float, 40>, 998> a = readFromFile("../data/spectrogram.dat");
-    array4d input(1, 998, 40, 1);
+    array<array<float, 80>, 998> a = readFromFile("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/model_data.txt");
+    array4d input(1, 998, 80, 1);
 
     int counter = 0;
     for (int i = 0; i < 998; i++) {
-        for (int j = 0; j < 40; j++) {
+        for (int j = 0; j < 80; j++) {
             input.data[counter] = a[i][j];
+            cout << input.data[counter] << endl;
             counter++;
         }
     }
@@ -54,9 +56,10 @@ int main() {
     /**
      * reading model params
      */
-    vector<array4d> dataChunks = readModel("../data/full_model.txt");
+    vector<array4d> dataChunks = readModel("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/full_bird_model.txt");
     
     bool flat = false;
+    int maxPoolCounter = 0;
     for (auto itr = dataChunks.begin(); itr != dataChunks.end(); itr++) {
         cout << itr->name << endl;
 
@@ -73,16 +76,39 @@ int main() {
             itr = itr++;
         }
 
-        if (itr->name == "MaxPooling2D"){
+        else if (itr->name == "MaxPooling2D"){
             MaxPooling m(&input);
-            input = m.forward();
+            if (maxPoolCounter == 2){
+                input = m.forward3x1();
+            }
+            else {
+                input = m.forward();
+                maxPoolCounter++;
+            }
+            float t=0;
         }
 
-        if (itr->name == "sigmoid"){
+        else if (itr->name == "sigmoid"){
             input = sigmoid(&input);
+            float t=0;
         }
 
-        if (itr->name == "Flatten"){
+        else if (itr->name == "BatchNormalization"){
+            array4d gamma = *itr;
+            array4d beta = *(itr + 1);
+            array4d mean = *(itr + 2);
+            array4d variance = *(itr + 3);
+            BatchNormalization BN(&input, &gamma, &beta, &mean, &variance);
+            input = BN.forward(flat);
+            itr = (itr + 3);
+        }
+
+        else if (itr->name == "LeakyReLU"){
+            input = leakyReLu(&input);
+            float t=0;
+        }
+
+        else if (itr->name == "Flatten"){
             array4d flatten(1, input.d1 * input.d2 * input.d3 * input.d4, 1, 1);
             counter = 0;
             for (int i = 0; i < input.d1; i++) {
@@ -96,9 +122,11 @@ int main() {
                 }
             }
             input = flatten;
+            flat = true;
+            float t=0;
         }
 
-        if (itr->name == "Dense") {
+        else if (itr->name == "Dense") {
             /*
              *
              */
@@ -109,7 +137,7 @@ int main() {
             // skipping the next, which is the bias
             itr = itr++;
             }
-        }
+    }
 
     std::cout << input.data[0] << endl;
     return 0;

@@ -8,53 +8,6 @@ Convolution2D::Convolution2D(array4d *inputArray, array4d *kernel, array4d *bias
 
 }
 
-//array4d Convolution2D::forward() {
-//
-//    array4d output(1, input->d2 - 2, input->d3 - 2, bias->d1);
-//    /**
-//     * Iterating over the image dimensions
-//     */
-//    int counter = 0;
-//    for (int i=0; i<input->d2 - 2; i++){
-//        for (int j=0; j<input->d3 - 2; j++){
-//
-//            /**
-//             * Extracting the 3x3 image
-//             */
-//             array4d imRegion(3, 3, input->d4, 1);
-//             int indx = 0;
-//             for (int l=0; l<3; l++){
-//                 for (int m=0; m<3 ;m++){
-//                     imRegion.data[indx]= input->at(0, i + l, j+m, 0);
-//                     indx++;
-//                 }
-//             } // imRegion extracted
-//
-//             /**
-//              * Multiplying with kernel and adding bias
-//              */
-//            array4d tmp = multiplyRegion(&imRegion);
-//
-//            /**
-//             * moving everything into output.data
-//             */
-//            for (int a=0; a<tmp.d1; a++){
-//                for (int b=0; b<tmp.d2; b++){
-//                    for (int c=0; c<tmp.d3; c++){
-//                        for (int d=0; d<tmp.d4; d++){
-//                            output.data[counter] = tmp.at(a, b, c, d);
-//                            counter++;
-//                        }
-//                    }
-//                }
-//            } // moving
-//
-//        }
-//    }
-//    return output;
-//
-//}
-
 array4d Convolution2D::forward() {
 
     array4d output(1, input->d2 - 2, input->d3 - 2, bias->d1);

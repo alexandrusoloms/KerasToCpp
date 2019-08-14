@@ -12,8 +12,12 @@ class MaxPooling{
 public:
     MaxPooling(array4d *image);
 
-    array4d forward();
+    array4d forward(bool is3x1=false);
+    array4d forward3x1();
+
+private:
     static array4d max(array4d *in);
+    static float findMax(array4d *in);
 
     array4d* input;
 };
