@@ -36,12 +36,13 @@ struct Dense{
     array4d* bias;
 };
 
-int main() {
+int main(int argc, char* argv[]) {
 
     /**
      * reading input
      */
-    array<array<float, 80>, 998> a = readFromFile("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/model_data.txt");
+    char* fname(argv[1]);
+    array<array<float, 80>, 998> a = readFromFile(fname);
     array4d input(1, 998, 80, 1);
 
     int counter = 0;
