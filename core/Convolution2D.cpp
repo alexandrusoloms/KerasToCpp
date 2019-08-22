@@ -1,7 +1,6 @@
 ////
 //// Created by mariussolomes on 18/07/19.
 ////
-#include <Bela-Matrix.h>
 #include "../inc/Convolution2D.h"
 
 Convolution2D::Convolution2D(array4d *inputArray, array4d *kernel, array4d *bias): input(inputArray), filters(kernel), bias(bias) {

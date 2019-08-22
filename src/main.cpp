@@ -1,4 +1,4 @@
-#include <Bela-Matrix.h>
+#include "../inc/matrix.h"
 #include "../inc/read.h"
 #include "../inc/Convolution2D.h"
 #include "../inc/MaxPooling.h"
@@ -13,17 +13,17 @@ struct Dense{
           input(input), weights(weights), bias(bias){};
 
     array4d forward(){
-        Matrix<float> inputMatrix(input->d1, input->d2);
+        Matrix inputMatrix(input->d1, input->d2);
         inputMatrix.data = input->data;
 
-        Matrix<float> weightsMatrix(weights->d1, weights->d2);
+        Matrix weightsMatrix(weights->d1, weights->d2);
         weightsMatrix.data = weights->data;
 
-        Matrix<float> biasMatrix(bias->d1, bias->d2);
+        Matrix biasMatrix(bias->d1, bias->d2);
         biasMatrix.data = bias->data;
 
-        Matrix<float> postMult = matrixDotProduct(&inputMatrix, &weightsMatrix);
-        Matrix<float> output= matrixAddition(&postMult, &biasMatrix);
+        Matrix postMult = matrixDotProduct(&inputMatrix, &weightsMatrix);
+        Matrix output= matrixAddition(&postMult, &biasMatrix);
 
         array4d out(output.rows, output.cols, 1, 1);
         out.data = output.data;

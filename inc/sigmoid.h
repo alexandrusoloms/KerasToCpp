@@ -7,12 +7,13 @@
 
 #include <math.h>
 #include "array4d.h"
+#include "matrix.h"
 
 float sigmoid(float x){
     return 1 / (1 + exp(- x));
 }
 
-Matrix<float> sigmoidMatrix(Matrix<float>* m){
+Matrix sigmoidMatrix(Matrix* m){
     for (int i=0; i<m->rows*m->cols; i++){
         m->data[i] = sigmoid(m->data[i]);
     }

@@ -69,13 +69,13 @@ array4d readBias(const std::string &fname){
     return bias;
 }
 
-Matrix<float> readDense(const std::string &fname){
+Matrix readDense(const std::string &fname){
     ifstream fin(fname.c_str());
     int dim1, dim2;
     fin >> dim1;
     fin >> dim2;
 
-    Matrix<float> dense(dim1, dim2);
+    Matrix dense(dim1, dim2);
 //    dense.data.resize(16318464);
 
     float tmp_float;
@@ -86,8 +86,8 @@ Matrix<float> readDense(const std::string &fname){
     return dense;
 }
 
-Matrix<float> readDense1Bias(const std::string &f_name){
-    Matrix<float> bias(256, 1);
+Matrix readDense1Bias(const std::string &f_name){
+    Matrix bias(256, 1);
     ifstream fin(f_name.c_str());
 
     float tmp_float;
