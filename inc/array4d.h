@@ -2,8 +2,8 @@
 // Created by mariussolomes on 19/07/19.
 //
 
-#ifndef KERASTOCPP_MATRIX4D_H
-#define KERASTOCPP_MATRIX4D_H
+#ifndef KERASTOCPP_ARRAY4D_H
+#define KERASTOCPP_ARRAY4D_H
 
 #include <vector>
 #include <assert.h>
@@ -41,4 +41,4 @@ struct array4d
 
 };
 
-#endif //KERASTOCPP_MATRIX4D_H
+#endif //KERASTOCPP_ARRAY4D_H

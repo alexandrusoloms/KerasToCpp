@@ -6,7 +6,7 @@
 #define KERASTOCPP_SIGMOID_H
 
 #include <math.h>
-#include "Matrix4D.h"
+#include "array4d.h"
 
 float sigmoid(float x){
     return 1 / (1 + exp(- x));

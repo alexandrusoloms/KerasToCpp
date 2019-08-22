@@ -9,7 +9,7 @@
 #include <string>
 #include <fstream>
 #include <array>
-#include "../inc/Matrix4D.h"
+#include "array4d.h"
 
 using namespace std;
 

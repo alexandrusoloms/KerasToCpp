@@ -5,7 +5,7 @@
 #ifndef KERASTOCPP_MAXPOOLING_H
 #define KERASTOCPP_MAXPOOLING_H
 
-#include "../inc/Matrix4D.h"
+#include "array4d.h"
 using namespace std;
 
 class MaxPooling{

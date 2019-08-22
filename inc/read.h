@@ -2,15 +2,15 @@
 // Created by mariussolomes on 18/07/19.
 //
 
-#ifndef KERASTOCPP_READSPECTROGRAM_H
-#define KERASTOCPP_READSPECTROGRAM_H
+#ifndef KERASTOCPP_READ_H
+#define KERASTOCPP_READ_H
 
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <array>
 
-#include "../inc/Matrix4D.h"
+#include "array4d.h"
 using namespace std;
 
 
@@ -177,4 +177,4 @@ vector<array4d> readModel(const std::string &fileName){
 }
 
 
-#endif //KERASTOCPP_READSPECTROGRAM_H
+#endif //KERASTOCPP_READ_H

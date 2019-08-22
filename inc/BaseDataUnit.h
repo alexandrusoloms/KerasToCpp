@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <string>
 
-#include "Matrix4D.h"
+#include "array4d.h"
 using namespace std;
 
 
