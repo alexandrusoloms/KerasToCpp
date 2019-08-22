@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
     /**
      * reading input
      */
-    char* fname(argv[1]);
+    std::string fname(argv[1]);
     array<array<float, 80>, 998> a = readFromFile(fname);
     array4d input(1, 998, 80, 1);
 
