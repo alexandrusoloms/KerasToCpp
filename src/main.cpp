@@ -1,11 +1,11 @@
 #include <Bela-Matrix.h>
-#include "../inc/readSpectrogram.h"
+#include "../inc/read.h"
 #include "../inc/Convolution2D.h"
 #include "../inc/MaxPooling.h"
 #include "../inc/sigmoid.h"
 #include "../inc/leakyReLu.h"
 #include "../inc/BatchNormalization.h"
-#include "../inc/Matrix4D.h"
+#include "../inc/array4d.h"
 
 
 struct Dense{
@@ -48,7 +48,7 @@ int main() {
     for (int i = 0; i < 998; i++) {
         for (int j = 0; j < 80; j++) {
             input.data[counter] = a[i][j];
-            cout << input.data[counter] << endl;
+//            cout << input.data[counter] << endl;
             counter++;
         }
     }
@@ -56,7 +56,8 @@ int main() {
     /**
      * reading model params
      */
-    vector<array4d> dataChunks = readModel("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/full_bird_model.txt");
+     // "/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/final_model5.txt"
+    vector<array4d> dataChunks = readModel("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/final_model9.txt");
     
     bool flat = false;
     int maxPoolCounter = 0;
