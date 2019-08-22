@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
      * reading model params
      */
      // "/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/final_model5.txt"
-    vector<array4d> dataChunks = readModel("/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/final_model9.txt");
+    vector<array4d> dataChunks = readModel("/homes/amsolomes1/KerasToCpp/data/final_model9.txt");
     
     bool flat = false;
     int maxPoolCounter = 0;
