@@ -63,7 +63,7 @@ int main(int argc, char* argv[]) {
     bool flat = false;
     int maxPoolCounter = 0;
     for (auto itr = dataChunks.begin(); itr != dataChunks.end(); itr++) {
-        cout << itr->name << endl;
+//        cout << itr->name << endl;
 
         if (itr->name == "Conv2D") {
             /**
