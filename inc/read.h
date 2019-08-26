@@ -19,8 +19,8 @@ array<array<float, 80>, 998> readFromFile(const std::string &fname){
     ifstream fin(fname.c_str());
     float tmp_float;
 
-    fin >> tmp_float;
-    fin >> tmp_float;
+//    fin >> tmp_float;
+//    fin >> tmp_float;
     for (int i=0; i<998; i++){
         for (int j=0; j<80; j++){
             fin >> tmp_float;
