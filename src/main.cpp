@@ -42,6 +42,7 @@ int main(int argc, char* argv[]) {
      * reading input
      */
     std::string fname(argv[1]);
+    std::string model(argv[2]);
     array<array<float, 80>, 998> a = readFromFile(fname);
     array4d input(1, 998, 80, 1);
 
@@ -57,14 +58,11 @@ int main(int argc, char* argv[]) {
     /**
      * reading model params
      */
-     // "/home/mariussolomes/final_project/summer2019/repos/KerasToCpp/data/final_model5.txt"
-    vector<array4d> dataChunks = readModel("/homes/amsolomes1/KerasToCpp/data/final_model9.txt");
+    vector<array4d> dataChunks = readModel(model);
     
     bool flat = false;
     int maxPoolCounter = 0;
     for (auto itr = dataChunks.begin(); itr != dataChunks.end(); itr++) {
-//        cout << itr->name << endl;
-
         if (itr->name == "Conv2D") {
             /**
              * Convolution + MaxPooling + Activation
@@ -87,12 +85,10 @@ int main(int argc, char* argv[]) {
                 input = m.forward();
                 maxPoolCounter++;
             }
-            float t=0;
         }
 
         else if (itr->name == "sigmoid"){
             input = sigmoid(&input);
-            float t=0;
         }
 
         else if (itr->name == "BatchNormalization"){
@@ -107,7 +103,6 @@ int main(int argc, char* argv[]) {
 
         else if (itr->name == "LeakyReLU"){
             input = leakyReLu(&input);
-            float t=0;
         }
 
         else if (itr->name == "Flatten"){
@@ -125,7 +120,6 @@ int main(int argc, char* argv[]) {
             }
             input = flatten;
             flat = true;
-            float t=0;
         }
 
         else if (itr->name == "Dense") {
