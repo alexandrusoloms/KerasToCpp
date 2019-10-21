@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/KerasToCpp.dir/src/main.cpp.o CMakeFiles/KerasToCpp.dir/core/Convolution2D.cpp.o CMakeFiles/KerasToCpp.dir/core/MaxPooling.cpp.o CMakeFiles/KerasToCpp.dir/core/array4d.cpp.o  -o KerasToCpp 
