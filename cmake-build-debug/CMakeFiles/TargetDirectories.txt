@@ -1,0 +1,3 @@
+/home/alexandrusoloms/bad/KerasToCpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/alexandrusoloms/bad/KerasToCpp/cmake-build-debug/CMakeFiles/KerasToCpp.dir
+/home/alexandrusoloms/bad/KerasToCpp/cmake-build-debug/CMakeFiles/edit_cache.dir

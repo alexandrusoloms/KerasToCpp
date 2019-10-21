@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alexandrusoloms/bad/KerasToCpp/core/Convolution2D.cpp
+../inc/Convolution2D.h
+/home/alexandrusoloms/bad/KerasToCpp/inc/Convolution2D.h
+
+/home/alexandrusoloms/bad/KerasToCpp/inc/Convolution2D.h
+iostream
+-
+string
+-
+fstream
+-
+array
+-
+array4d.h
+/home/alexandrusoloms/bad/KerasToCpp/inc/array4d.h
+
+/home/alexandrusoloms/bad/KerasToCpp/inc/array4d.h
+vector
+-
+assert.h
+-
+
