@@ -1,4 +1,4 @@
-#include "../inc/matrix.h"
+ #include "../inc/matrix.h"
 #include "../inc/read.h"
 #include "../inc/Convolution2D.h"
 #include "../inc/MaxPooling.h"
@@ -43,11 +43,11 @@ int main(int argc, char* argv[]) {
      */
     std::string fname(argv[1]);
     std::string model(argv[2]);
-    array<array<float, 80>, 998> a = readFromFile(fname);
-    array4d input(1, 998, 80, 1);
+    array<array<float, 80>, 1000> a = readFromFile(fname);
+    array4d input(1, 1000, 80, 1);
 
     int counter = 0;
-    for (int i = 0; i < 998; i++) {
+    for (int i = 0; i < 1000; i++) {
         for (int j = 0; j < 80; j++) {
             input.data[counter] = a[i][j];
 //            cout << input.data[counter] << endl;
@@ -59,9 +59,10 @@ int main(int argc, char* argv[]) {
      * reading model params
      */
     vector<array4d> dataChunks = readModel(model);
-    
+
     bool flat = false;
     int maxPoolCounter = 0;
+    int convolution2DCounter = 0;
     for (auto itr = dataChunks.begin(); itr != dataChunks.end(); itr++) {
         if (itr->name == "Conv2D") {
             /**
@@ -70,8 +71,13 @@ int main(int argc, char* argv[]) {
             array4d kernel = *itr;
             array4d bias = *++itr;
             Convolution2D conv2(&input, &kernel, &bias);
-            input = conv2.forward();
-
+            if (convolution2DCounter == 2){
+              input = conv2.forward3x1();
+            }
+            else{
+              input = conv2.forward();
+              convolution2DCounter++;
+            }
             // skipping the next, which is the bias
             itr = itr++;
         }
@@ -132,7 +138,7 @@ int main(int argc, char* argv[]) {
             input = dense.forward();
             // skipping the next, which is the bias
             itr = itr++;
-            }
+        }
     }
 
     std::cout << input.data[0] << endl;

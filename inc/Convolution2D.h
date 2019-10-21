@@ -24,6 +24,7 @@ public:
                   array4d *bias);
 
     array4d forward();
+    array4d forward3x1();
     array4d multiplyRegion(array4d *imageRegion);
 
 
